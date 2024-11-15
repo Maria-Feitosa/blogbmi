@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .models import Post
+from .forms import PostForm
 from django.shortcuts import render, get_object_or_404
 
 
@@ -36,8 +37,11 @@ def create_post(request):
         return HttpResponseRedirect(
             reverse('posts:detail', args=(post.id, )))
     else:
-        return render(request, 'posts/create.html', {})
+        form = PostForm()
+        context = {'form': form}
+        return render(request, 'posts/create.html', context)
     
+
 def update_post(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
 
