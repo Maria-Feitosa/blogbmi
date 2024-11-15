@@ -1,0 +1,16 @@
+{% extends 'base.html' %} {% block title %} {{ post.name }}
+ {% endblock title %} {% block content %}
+    <h2>Detalhes do grupo: {{ post.name }}</h2>
+    
+    <section class="dados-de-grupo">
+      <img src="{{ post.poster_url }}" alt="Poster do grupo {{ post.name}}" />
+      <ul>
+        <li>Nome: {{ post.name }}</li>
+        <li>Detalhes: {{post.detail}}</li>
+        <li>Data de postagem: {{post.data_postagem}}</li>
+        <li><a href="{% url 'posts:update' post.id %}">Editar</li>
+        <li><a href="{% url 'posts:delete' post.id %}">Deletar</li>
+      </ul>
+    </section>
+    
+    {% endblock content %}

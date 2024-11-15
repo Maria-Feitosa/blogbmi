@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<form action="{% url 'posts:delete' post.id %}" method="post">
+  {% csrf_token %}
+  <h2>
+    Você tem certeza que deseja apagar o grupo "{{ post.name }}"?
+  </h2>
+  <button type="submit">Sim
+  </form>
+{% endblock content %}

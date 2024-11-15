@@ -1,0 +1,25 @@
+{% extends 'base.html' %} {% block content %}
+<h2>Todos os grupos</h2>
+<section>
+    <p>
+      Muitos resultados? <a href="{% url 'posts:search' %}">Buscar Grupos</a>
+    </p>
+    <p>
+      Não encontrou o grupo?
+      <a href="{% url 'posts:create' %}">Adicionar Novo Grupo</a>
+    </p>
+  </section>
+{% if post_list %}
+<section class="lista-de-cards">
+  {% for post in post_list %}
+  <article class="card">
+    <a href="{% url 'posts:detail' post.id %}"
+      ><img src="{{ post.poster_url }}" alt="Poster do grupo {{ post.name}}"
+    /></a>
+    <p>{{ post.name }}</p>
+  </article>
+  {% endfor %}
+</section>
+{% else %}
+<p>Não foi encontrado nenhum grupo.</p>
+{% endif %} {% endblock content %}

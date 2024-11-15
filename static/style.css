@@ -24,9 +24,7 @@
   
   header#cabecalho-principal {
     width: 100%;
-    max-width: 1080px;
     padding: 3rem 1rem;
-  
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -34,7 +32,7 @@
     overflow: hidden;
     height: 5%;
   }
-img{
+header img{
     max-height: 96px;
     height: 100%;
     width: auto;
@@ -122,7 +120,7 @@ footer#rodape-principal{
     text-decoration: underline;
   }
   
-  .dados-de-filme {
+  .dados-de-grupo {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -130,12 +128,12 @@ footer#rodape-principal{
     padding: 1rem 0;
   }
   
-  .dados-de-filme img {
+  .dados-de-grupo img {
     width: 285px;
     box-shadow: 2px 2px 10px var(--color-shadow);
   }
   
-  .dados-de-filme ul {
+  .dados-de-grupo ul {
     list-style-type: none;
   }
   
