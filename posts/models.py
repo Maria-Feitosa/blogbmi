@@ -10,6 +10,7 @@ class Post(models.Model):
     def __str__(self):
         return f'{self.name} Criado em: {self.data_postagem}'
 
+   
 
 class Review(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL,
