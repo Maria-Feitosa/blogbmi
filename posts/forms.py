@@ -17,13 +17,16 @@ class PostForm(ModelForm):
         }
 
 class CommentForm(ModelForm):
-    post = forms.ModelChoiceField(queryset=Post.objects.all(), widget=forms.HiddenInput)
+    post = forms.ModelChoiceField(queryset=Post.objects.all())
     
     class Meta:
         model = Comment
-        fields = [
+        fields = ["author",
+                  'post',
             "comentario",
         ]
         labels = {
+            'author': 'Seu nome',
+            'post': 'post que quer comentar',
             "comentario": "Deixe seu comentário"
         }
