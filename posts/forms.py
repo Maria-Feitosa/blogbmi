@@ -8,6 +8,7 @@ class PostForm(ModelForm):
         fields = [
             "name",
             "poster_url",
+            "categoria",
             "detail",
         ]
         labels = {
@@ -22,8 +23,8 @@ class CommentForm(ModelForm):
     class Meta:
         model = Comment
         fields = ["author",
-                  'post',
-            "comentario",
+                  "post",
+                  "comentario",
         ]
         labels = {
             'author': 'Seu nome',

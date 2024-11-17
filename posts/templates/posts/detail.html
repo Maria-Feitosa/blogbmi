@@ -10,6 +10,12 @@
         <li>Data de postagem: {{post.data_postagem}}</li>
         <li><a href="{% url 'posts:update' post.id %}">Editar</a></li>
         <li><a href="{% url 'posts:delete' post.id %}">Deletar</a></li>
+        <li>Categorias:</li>
+        <ul>
+          {% for categoria in post.categoria.all %}
+            <li><a href="{% url 'posts:categoriaindividual' categoria.id %}">{{categoria.categoria}}</a></li>
+          {% endfor %}
+        </ul>
       </ul>
     </section>
     

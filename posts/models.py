@@ -1,8 +1,16 @@
 from django.db import models
 from django.conf import settings
 
+class Category(models.Model):
+    categoria = models.CharField(max_length=255)
+    descricao = models.TextField()
+
+    def __str__(self):
+        return f'{self.categoria}'
+    
 
 class Post(models.Model):
+    categoria = models.ManyToManyField(Category)
     name = models.CharField(max_length=255)
     poster_url = models.URLField(null=True)
     detail = models.TextField()
@@ -21,3 +29,4 @@ class Comment(models.Model):
 
     def __str__(self):
         return f'{self.author.username} referente a {self.post}'
+
