@@ -8,9 +8,24 @@
         <li>Nome: {{ post.name }}</li>
         <li>Detalhes: {{post.detail}}</li>
         <li>Data de postagem: {{post.data_postagem}}</li>
-        <li><a href="{% url 'posts:update' post.id %}">Editar</li>
-        <li><a href="{% url 'posts:delete' post.id %}">Deletar</li>
+        <li><a href="{% url 'posts:update' post.id %}">Editar</a></li>
+        <li><a href="{% url 'posts:delete' post.id %}">Deletar</a></li>
       </ul>
     </section>
     
-    {% endblock content %}
+
+    <h2>Comentários:</h2>
+      {% if comments %}
+        {% for comment in comments %}
+          <p><b>{{comment.author}}</b></p>
+          <p><small>Comentou em: {{comment.data_comentario}}</small></p>
+          <p>{{comment.comentario}}</p>
+          <hr>
+        {% endfor %}
+      {% else %}
+      <p >Não há Comentários</p>
+      {% endif %}
+    <h4>
+      <a href="{%url 'posts:comentario' post.pk %} "> Fazer comentário</a>
+    </h4>
+{% endblock content %}

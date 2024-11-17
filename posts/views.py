@@ -1,21 +1,18 @@
-from typing import Any
+from django.forms import BaseModelForm
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
-from django.urls import reverse_lazy
-from .models import Post
-from .forms import PostForm
+from django.http import HttpResponse, HttpResponseRedirect
+from django.urls import reverse_lazy, reverse
+from .models import Post, Comment
+from .forms import PostForm, CommentForm
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
-from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
 
-class PostDetailView(generic.DetailView):
-    model = Post
-    template_name = 'posts/detail.html'
-    
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs) 
-        return context
+def detail_post(request,post_id):
+    post = get_object_or_404(Post, pk=post_id)
+    comments = post.comment_set.all().order_by('-data_comentario')
+    comment_form = CommentForm
+    return render(request, 'posts/detail.html', {'post': post, 'comments': comments,'comment_form': comment_form})
     
 
 class PostListView(generic.ListView):
@@ -50,3 +47,17 @@ class PostDeleteView(generic.DeleteView):
     model = Post
     template_name = 'posts/delete.html'
     success_url = reverse_lazy('posts:index')
+
+class CommentCreateView(CreateView):
+    model = Comment
+    form_class = CommentForm
+    template_name = 'posts/comentario.html'
+    
+    def form_valid(self, form):
+        comment = form.save()
+        comment.post = self.get_object()
+        comment.save()
+        return super().form_valid(form)
+    
+    def get_success_url(self):
+        return reverse_lazy('posts:detail', kwargs={'pk': self.object.pk})
